@@ -138,21 +138,21 @@ export default function presetClark(): Preset {
         }),
       ],
       [
-        /^gap-y-([d.-]+)$/,
+        /^gap-y-([\d.-]+)$/,
         ([, value]) => ({
           "grid-row-gap": `${value}rem`,
           "row-gap": `${value}rem`,
         }),
       ],
       [
-        /^p-([d.-]+)/([d.-]+)$/,
+        /^p-([\d.-]+)\/([\d.-]+)$/,
         ([, blockValue, inlineValue]) => ({
           "padding-block": `${blockValue}rem`,
           "padding-inline": `${inlineValue}rem`,
         }),
       ],
       [
-        /^space-y-([d.-]+)$/,
+        /^space-y-([\d.-]+)$/,
         ([, value]) => ({
           "--un-space-y-reverse": 0,
           "margin-top": `calc(${value}rem * calc(1 - var(--un-space-y-reverse)))`,
@@ -160,7 +160,7 @@ export default function presetClark(): Preset {
         }),
       ],
       [
-        /^gap-([d.-]+)/([d.-]+)$/,
+        /^gap-([\d.-]+)\/([\d.-]+)$/,
         ([, rowValue, columnValue]) => ({
           "grid-row-gap": `${rowValue}rem`,
           "row-gap": `${rowValue}rem`,
@@ -169,7 +169,7 @@ export default function presetClark(): Preset {
         }),
       ],
       [
-        /^p-([d.-]+)$/,
+        /^p-([\d.-]+)$/,
         ([, value]) => ({
           padding: `${value}rem`,
         }),
