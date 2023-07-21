@@ -14,6 +14,8 @@ export default function presetClark(): Preset {
         "dark-grey-blue": "#5E6778",
         snow: "#F7FAFD",
         red: "#F65552",
+        "grey-blue": "#939CAD",
+        "very-light-grey-blue": "#DDE7EE",
       },
     },
     rules: [
@@ -179,6 +181,14 @@ export default function presetClark(): Preset {
         /^p-([\d.-]+)$/,
         ([, value]) => ({
           padding: `${value}rem`,
+        }),
+      ],
+      [
+        /^space-x-([\d.-]+)$/,
+        ([, value]) => ({
+          "--un-space-x-reverse": 0,
+          "margin-left": `calc(${value}rem * calc(1 - var(--un-space-x-reverse)))`,
+          "margin-right": `calc(${value}rem * var(--un-space-x-reverse))`,
         }),
       ],
     ],

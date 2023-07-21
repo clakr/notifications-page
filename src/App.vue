@@ -47,7 +47,7 @@ const notifications: Notification[] = [
     read: true,
     type: "send",
     message:
-      "Hello, thanks for setting up the Chess Club. I&apos;ve been a member for a few weeks now and I&apos;m already having lots of fun and improving my game.",
+      "Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm already having lots of fun and improving my game.",
   },
   {
     user: {
