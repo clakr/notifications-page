@@ -1,12 +1,19 @@
-import { Preset } from 'unocss';
+import { Preset } from "unocss";
 
 export default function presetClark(): Preset {
   return {
-    name: 'presetClark',
+    name: "presetClark",
     theme: {
       breakpoints: {
         tablet: "768px",
         desktop: "1440px",
+      },
+      colors: {
+        "very-dark-grey-blue": "#1C202B",
+        blue: "#0A327B",
+        "dark-grey-blue": "#5E6778",
+        snow: "#F7FAFD",
+        red: "#F65552",
       },
     },
     rules: [
@@ -174,6 +181,6 @@ export default function presetClark(): Preset {
           padding: `${value}rem`,
         }),
       ],
-    ]
-  }
+    ],
+  };
 }
