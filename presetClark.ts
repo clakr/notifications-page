@@ -6,6 +6,7 @@ export default function presetClark(): Preset {
     theme: {
       breakpoints: {
         tablet: "768px",
+        laptop: "1024px",
         desktop: "1440px",
       },
       colors: {
@@ -16,6 +17,7 @@ export default function presetClark(): Preset {
         red: "#F65552",
         "grey-blue": "#939CAD",
         "very-light-grey-blue": "#DDE7EE",
+        "light-grey-blue": "#E5EFFA",
       },
     },
     rules: [
@@ -189,6 +191,13 @@ export default function presetClark(): Preset {
           "--un-space-x-reverse": 0,
           "margin-left": `calc(${value}rem * calc(1 - var(--un-space-x-reverse)))`,
           "margin-right": `calc(${value}rem * var(--un-space-x-reverse))`,
+        }),
+      ],
+      [
+        /^p-([\d.-]+)\/([\d.-]+)\/([\d.-]+)$/,
+        ([, topValue, inlineValue, bottomValue]) => ({
+          "padding-block": `${topValue}rem ${bottomValue}rem`,
+          "padding-inline": `${inlineValue}rem`,
         }),
       ],
     ],

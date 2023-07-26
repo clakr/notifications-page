@@ -20,11 +20,18 @@ export default defineConfig({
   preflights: [
     {
       getCSS: () =>
-        ":root { font-size: 62.5%; font-family: 'Plus Jakarta Sans'; }",
+        ":root { font-size: 62.5%; font-family: 'Plus Jakarta Sans'; background-color: #F9FAFD; }",
     },
   ],
   theme: {},
   shortcuts: {},
-  rules: [],
+  rules: [
+    [
+      "shadow-card",
+      {
+        "box-shadow": "0px 20px 60px 0px rgba(73, 97, 168, 0.05)",
+      },
+    ],
+  ],
   safelist: ["sr-only"],
 });

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, onBeforeMount } from "vue";
+import { inject, onBeforeMount, computed, ref } from "vue";
 import NotificationItem from "@/components/NotificationItem.vue";
 import { Notification } from "@/types";
 
@@ -8,7 +8,7 @@ const changeKeyboardBtnBackgroundColor = inject(
   "changeKeyboardBtnBackgroundColor"
 ) as () => void;
 
-const notifications: Notification[] = [
+const notifications = ref<Notification[]>([
   {
     user: {
       name: "Mark Webber",
@@ -79,7 +79,18 @@ const notifications: Notification[] = [
     type: "left",
     group: "Chess Club",
   },
-];
+]);
+
+const unreadNotifications = computed(
+  () => notifications.value.filter((notification) => !notification.read).length
+);
+
+function handleMarkAllAsRead() {
+  notifications.value = notifications.value.map((notification) => ({
+    ...notification,
+    read: true,
+  }));
+}
 
 onBeforeMount(() => {
   addSRHeading();
@@ -88,15 +99,27 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <section class="p-2.4/1.6">
-    <div class="flex items-center gap-x-.9">
-      <h2 class="c-very-dark-grey-blue fs-2 fw-800">Notifications</h2>
-      <span class="c-white fs-1.6 fw-800 bg-blue p-.2/1.1 br-.6">3</span>
-      <button class="ml-auto c-dark-grey-blue fs-1.4 fw-500">
+  <section
+    class="p-2.4/1.6 bg-white max-w-73 br-1.5 shadow-card laptop:(p-3.3/3/0)"
+  >
+    <div class="flex items-center gap-x-.9 laptop:(gap-x-1.1)">
+      <h2 class="c-very-dark-grey-blue fs-2 fw-800 laptop:(fs-2.4)">
+        Notifications
+      </h2>
+      <span
+        v-if="unreadNotifications"
+        class="c-white fs-1.6 fw-800 bg-blue p-.2/1.1 br-.6"
+      >
+        {{ unreadNotifications }}
+      </span>
+      <button
+        class="ml-auto c-dark-grey-blue fs-1.4 fw-500 laptop:(fs-1.6) [&:active,&:hover,&:focus]:c-blue"
+        @click="handleMarkAllAsRead"
+      >
         Mark all as read
       </button>
     </div>
-    <div class="flex flex-col gap-y-1 mt-2.4">
+    <div class="flex flex-col gap-y-1 mt-2.4 laptop:(mt-3.1 gap-y-.8)">
       <NotificationItem
         v-for="(notification, index) in notifications"
         :key="index"
@@ -106,4 +129,11 @@ onBeforeMount(() => {
   </section>
 </template>
 
-<style scoped></style>
+<style>
+main {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+}
+</style>
